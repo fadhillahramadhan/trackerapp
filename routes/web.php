@@ -30,7 +30,7 @@ Route::get('/show', function () {
 
 
     // get location from google maps
-    $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng={$details->loc}&sensor=false";
+    $url = "https://www.google.co.id/maps/place/{$details->loc}";
     echo $url . "<br>";
 
 
