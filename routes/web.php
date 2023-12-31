@@ -17,23 +17,32 @@ Route::get('/', [TrackerController::class, 'show']);
 // Route::get()
 // show echo shwo
 Route::get('/show', function () {
-    // echo "show";
-    // get location from cloudflare
+
+    // Get IP Address from Cloudflare
     $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
-    echo $ip . "<br>";
-    // get location from ipinfo.io
+    echo "IP Address: " . $ip . "<br>";
+
+    // Get location from ipinfo.io
     $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-    echo $details->city . "<br>"; // -> is used to access the object property
-    echo $details->country . "<br>";
-    echo $details->region . "<br>";
-    echo $details->loc . "<br>";
+    echo "City: " . $details->city . "<br>";
+    echo "Country: " . $details->country . "<br>";
+    echo "Region: " . $details->region . "<br>";
+    echo "Location: " . $details->loc . "<br>";
 
-
-    // get location from google maps
+    // Get location from Google Maps
     $url = "https://www.google.co.id/maps/place/{$details->loc}";
-    echo $url . "<br>";
+    echo "Google Maps: " . $url . "<br>";
 
+    // Get location from ip-api.com
+    $ipApiDetails = json_decode(file_get_contents("http://ip-api.com/json/{$ip}"));
 
-    // get location from ip-api.com
-
+    // Check if the request was successful before accessing details
+    if ($ipApiDetails->status == 'success') {
+        echo "ISP: " . $ipApiDetails->isp . "<br>";
+        echo "Browser: " . $_SERVER['HTTP_USER_AGENT'] . "<br>";
+        echo "Operating System: " . $ipApiDetails->os . "<br>";
+        echo "Device: " . $ipApiDetails->device . "<br>";
+    } else {
+        echo "Failed to get details from ip-api.com<br>";
+    }
 });
