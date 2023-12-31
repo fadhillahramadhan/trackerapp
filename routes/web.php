@@ -31,17 +31,6 @@ Route::get('/show', function () {
 
     // get location from google maps
     $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng={$details->loc}&sensor=false";
-    $data = @file_get_contents($url);
-    $jsondata = json_decode($data, true);
-    $city = $jsondata["results"][0]["address_components"][2]["long_name"];
-    $country = $jsondata["results"][0]["address_components"][5]["long_name"];
-    // coordinates
-    $lat = $jsondata["results"][0]["geometry"]["location"]["lat"];
-    $lng = $jsondata["results"][0]["geometry"]["location"]["lng"];
-
-    echo $lat . "<br>";
-    echo $city . "<br>";
-    echo $country . "<br>";
     echo $url . "<br>";
 
 
