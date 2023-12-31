@@ -27,7 +27,6 @@ Route::get('/show', function () {
     echo $details->country . "<br>";
     echo $details->region . "<br>";
     echo $details->loc . "<br>";
-    echo $details->postal . "<br>";
 
 
     // get location from google maps
