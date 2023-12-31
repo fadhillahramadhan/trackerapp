@@ -38,12 +38,4 @@ Route::get('/show', function () {
 
     // Check if the request was successful before accessing details
     echo json_encode($ipApiDetails);
-    // if ($ipApiDetails->status == 'success') {
-    //     echo "ISP: " . $ipApiDetails->isp . "<br>";
-    //     echo "Browser: " . $_SERVER['HTTP_USER_AGENT'] . "<br>";
-    //     echo "Operating System: " . $ipApiDetails->os . "<br>";
-    //     echo "Device: " . $ipApiDetails->device . "<br>";
-    // } else {
-    //     echo "Failed to get details from ip-api.com<br>";
-    // }
 });
