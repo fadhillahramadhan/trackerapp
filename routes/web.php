@@ -37,12 +37,10 @@ Route::get('/show', function () {
     $ipApiDetails = json_decode(file_get_contents("http://ip-api.com/json/{$ip}"));
 
     // Check if the request was successful before accessing details
-    echo json_encode($ipApiDetails);
     // {"status":"success","country":"Indonesia","countryCode":"ID","region":"YO","regionName":"Yogyakarta","city":"Yogyakarta","zip":"","lat":-7.8035,"lon":110.3646,"timezone":"Asia\/Jakarta","isp":"Telekomunikasi Indonesia","org":"Implementasi Telkom 2019","as":"AS7713 PT Telekomunikasi Indonesia","query":"2001:448a:4042:35cc:44c5:b531:cb90:f2e0"}
     if ($ipApiDetails->status == 'success') {
         echo "ISP: " . $ipApiDetails->isp . "<br>";
         echo "Browser: " . $_SERVER['HTTP_USER_AGENT'] . "<br>";
-        echo "Device: " . $ipApiDetails->device . "<br>";
     } else {
         echo "Failed to get details from ip-api.com<br>";
     }
