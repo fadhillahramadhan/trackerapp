@@ -11,7 +11,9 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array<int, string>
      */
+    // Route::post('webhook', function () {
+
     protected $except = [
-        //
+        'webhook',
     ];
 }
